@@ -1,0 +1,7 @@
+db.artistas.aggregate([
+  { $match: { nombre: "Shakira" } },
+  { $unwind: "$canciones" },
+  { $group: { _id: "$nombre", generos: { $addToSet: "$canciones.genero" } } },
+  { $project: { artista: "$_id", generos: 1, _id: 0 } }
+])
+

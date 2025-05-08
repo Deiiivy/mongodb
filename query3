@@ -1,0 +1,5 @@
+db.artistas.aggregate([
+  { $match: { pais: { $in: ["Colombia", "Puerto Rico"] } } },
+  { $group: { _id: "$pais", total: { $sum: 1 } } }
+])
+

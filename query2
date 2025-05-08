@@ -1,0 +1,32 @@
+db.albumes.aggregate([
+  { $match: { canciones: "Callaita" } },
+  { $lookup: {
+      from: "artistas",
+      localField: "artista",
+      foreignField: "nombre",
+      as: "artista_info"
+  }},
+  { $unwind: "$artista_info" },
+  { $project: {
+      cancion: { 
+        $arrayElemAt: [
+          {
+            $filter: {
+              input: "$artista_info.canciones",
+              as: "c",
+              cond: { $eq: ["$$c.titulo", "Callaita"] }
+            }
+          }, 0
+        ]
+      },
+      album: "$titulo",
+      artista: "$artista"
+  }},
+  { $project: {
+      cancion: "$cancion.titulo",
+      duracion: "$cancion.duracion",
+      album: 1,
+      artista: 1
+  }}
+])
+
