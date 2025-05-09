@@ -1,3 +1,8 @@
+/*
+En que Álbum se publicó la canción
+“Callaita” y que duración tiene la canción
+*/
+
 db.albumes.aggregate([
   { $match: { canciones: "Callaita" } },
   { $lookup: {

@@ -1,3 +1,9 @@
+/* Obtener los artistas de Colombia y la
+cantidad de canciones que tiene cada
+uno
+
+*/
+
 db.artistas.aggregate([
   { $match: { pais: "Colombia" } },
   { $project: { 

@@ -1,3 +1,7 @@
+/*
+Qué géneros canta Shakira
+*/
+
 db.artistas.aggregate([
   { $match: { nombre: "Shakira" } },
   { $unwind: "$canciones" },
