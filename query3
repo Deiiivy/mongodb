@@ -1,9 +1,11 @@
 /*
-
+Contar cuantos artistas de Puerto Rico y
+Colombia hay
+*/
 db.artistas.aggregate([
   { $match: { pais: { $in: ["Colombia", "Puerto Rico"] } } },
   { $group: { _id: "$pais", total: { $sum: 1 } } }
 ])
 
 
-*/
+
